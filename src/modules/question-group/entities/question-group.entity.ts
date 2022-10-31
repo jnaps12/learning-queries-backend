@@ -2,7 +2,7 @@ import { Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Column, CreateDateColumn } from 'typeorm';
 import { QuestionEntity } from '../../question/entities/question.entity';
 
-@Entity('question-group')
+@Entity('question_group')
 export class QuestionGroupEntity {
   @PrimaryGeneratedColumn()
   id: number;

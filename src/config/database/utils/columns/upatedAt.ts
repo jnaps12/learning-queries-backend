@@ -1,4 +1,4 @@
-import { TableColumn } from 'typeorm/browser';
+import { TableColumn } from 'typeorm';
 
 export const updatedAtColumn = {
   name: 'updated_at',

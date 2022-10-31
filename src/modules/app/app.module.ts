@@ -2,11 +2,21 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { QuestionGroupModule } from '../question-group/question-group.module';
-import { dataSource } from '../../config/database';
+import { dataSource, dbConfig } from '../../config/database';
 import { DataSource } from 'typeorm';
+import { ConfigModule } from '@nestjs/config';
+import { QuestionModule } from '../question/question.module';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 @Module({
-  imports: [QuestionGroupModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    TypeOrmModule.forRoot(dbConfig as TypeOrmModuleOptions),
+    QuestionGroupModule,
+    QuestionModule,
+  ],
   controllers: [AppController],
   providers: [
     AppService,

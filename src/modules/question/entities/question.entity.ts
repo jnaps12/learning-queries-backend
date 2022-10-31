@@ -1,4 +1,4 @@
-import { Entity, JoinColumn, ManyToOne } from 'typeorm/browser';
+import { Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { Column, CreateDateColumn, PrimaryGeneratedColumn } from 'typeorm';
 import { QuestionGroupEntity } from '../../question-group/entities/question-group.entity';
 
