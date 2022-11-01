@@ -1,6 +1,14 @@
-import { BeforeUpdate, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import {
+  BeforeUpdate,
+  Entity,
+  JoinColumn,
+  ManyToMany,
+  ManyToOne,
+} from 'typeorm';
 import { Column, CreateDateColumn, PrimaryGeneratedColumn } from 'typeorm';
 import { QuestionGroupEntity } from '../../question-group/entities/question-group.entity';
+import { JoinTable } from 'typeorm/browser';
+import { StudentEntity } from '../../student/entities/student.entity';
 
 export enum Levels {
   EASY = 'EASY',
@@ -40,6 +48,12 @@ export class QuestionEntity {
   )
   @JoinColumn({ name: 'question_group_id' })
   questionGroup: QuestionGroupEntity;
+
+  @ManyToMany(() => StudentEntity, (student) => student.questions, {
+    cascade: true,
+  })
+  @JoinTable()
+  students: StudentEntity[];
 
   @CreateDateColumn({
     type: 'timestamp',
