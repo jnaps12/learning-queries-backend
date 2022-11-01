@@ -4,16 +4,21 @@ import { UpdateQuestionDto } from './dto/update-question.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { QuestionEntity } from './entities/question.entity';
 import { Repository } from 'typeorm';
+import { QuestionGroupService } from '../question-group/question-group.service';
 
 @Injectable()
 export class QuestionService {
   constructor(
     @InjectRepository(QuestionEntity)
     private readonly questionRepository: Repository<QuestionEntity>,
+
+    private readonly questionGroupService: QuestionGroupService,
   ) {}
 
   async create(createQuestionDto: CreateQuestionDto) {
     const question = await this.questionRepository.create(createQuestionDto);
+
+    await this.questionGroupService.findOne(question.questionGroupId);
 
     if (!question) {
       throw new HttpException('New question not created', 400);
