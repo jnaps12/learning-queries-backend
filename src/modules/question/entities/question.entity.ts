@@ -1,4 +1,4 @@
-import { Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { BeforeUpdate, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { Column, CreateDateColumn, PrimaryGeneratedColumn } from 'typeorm';
 import { QuestionGroupEntity } from '../../question-group/entities/question-group.entity';
 
@@ -55,4 +55,9 @@ export class QuestionEntity {
     name: 'updated_at',
   })
   updatedAt: Date;
+
+  @BeforeUpdate()
+  updateTimestamp() {
+    this.updatedAt = new Date();
+  }
 }

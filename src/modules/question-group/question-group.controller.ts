@@ -16,30 +16,30 @@ export class QuestionGroupController {
   constructor(private readonly questionGroupService: QuestionGroupService) {}
 
   @Post()
-  create(@Body() createQuestionGroupDto: CreateQuestionGroupDto) {
-    return this.questionGroupService.create(createQuestionGroupDto);
+  async create(@Body() createQuestionGroupDto: CreateQuestionGroupDto) {
+    return await this.questionGroupService.create(createQuestionGroupDto);
   }
 
   @Get()
-  findAll() {
-    return this.questionGroupService.findAll();
+  async findAll() {
+    return await this.questionGroupService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.questionGroupService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.questionGroupService.findOne(+id);
   }
 
   @Patch(':id')
-  update(
+  async update(
     @Param('id') id: string,
     @Body() updateQuestionGroupDto: UpdateQuestionGroupDto,
   ) {
-    return this.questionGroupService.update(+id, updateQuestionGroupDto);
+    return await this.questionGroupService.update(+id, updateQuestionGroupDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.questionGroupService.remove(+id);
+  async remove(@Param('id') id: string) {
+    return await this.questionGroupService.remove(+id);
   }
 }
