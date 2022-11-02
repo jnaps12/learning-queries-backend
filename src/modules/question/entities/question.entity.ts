@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { Column, CreateDateColumn, PrimaryGeneratedColumn } from 'typeorm';
 import { QuestionGroupEntity } from '../../question-group/entities/question-group.entity';
-import { JoinTable } from 'typeorm/browser';
+import { JoinTable } from 'typeorm';
 import { StudentEntity } from '../../student/entities/student.entity';
 
 export enum Levels {
