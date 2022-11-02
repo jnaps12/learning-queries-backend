@@ -15,9 +15,9 @@ import { CredentialModule } from '../credential/credential.module';
       isGlobal: true,
     }),
     TypeOrmModule.forRoot(dbConfig as TypeOrmModuleOptions),
+    CredentialModule,
     QuestionGroupModule,
     QuestionModule,
-    CredentialModule,
   ],
   controllers: [AppController],
   providers: [

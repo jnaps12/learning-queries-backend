@@ -24,7 +24,6 @@ export class Credential1667400969760 implements MigrationInterface {
           {
             name: 'status',
             type: 'boolean',
-            isNullable: false,
             default: false,
           },
           createdAtcolumn,

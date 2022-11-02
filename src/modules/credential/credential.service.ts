@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCredentialDto } from './dto/create-credential.dto';
 import { CredentialEntity } from './entities/credential.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -20,11 +20,21 @@ export class CredentialService {
   }
 
   async findById(id: number) {
-    return await this.credentialRepository.findOne({
+    const credential = await this.credentialRepository.findOne({
       where: {
         id: id,
       },
     });
+
+    if (!credential) {
+      throw new NotFoundException(
+        credential,
+        `Credential with id ${id} not found.`,
+      );
+    }
+
+    delete credential.password;
+    return credential;
   }
 
   async findByEmail(email: string) {

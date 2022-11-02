@@ -10,7 +10,7 @@ import {
 
 import * as bcrypt from 'bcrypt';
 
-@Entity()
+@Entity('credential')
 export class CredentialEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
