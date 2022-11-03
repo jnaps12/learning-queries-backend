@@ -20,8 +20,10 @@ export class StudentEntity {
   @Column()
   enrollment: string;
 
-  @ManyToMany(() => QuestionEntity, (question) => question.students)
-  @JoinTable()
+  @ManyToMany(() => QuestionEntity)
+  @JoinTable({
+    name: 'solved-question',
+  })
   questions: QuestionEntity[];
 
   @CreateDateColumn({

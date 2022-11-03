@@ -23,6 +23,11 @@ export class AuthService {
     };
   }
 
+  // async logout(id: number) {
+  //   const credential = await this.credentialService.findById(id);
+  //
+  // }
+
   async validateUser(authLoginDto: AuthLoginDto): Promise<CredentialEntity> {
     const { email, password } = authLoginDto;
 

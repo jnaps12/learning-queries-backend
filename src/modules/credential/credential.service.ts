@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateCredentialDto } from './dto/create-credential.dto';
 import { CredentialEntity } from './entities/credential.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -13,6 +17,10 @@ export class CredentialService {
 
   async create(createCredentialDto: CreateCredentialDto) {
     const user = await this.credentialRepository.create(createCredentialDto);
+
+    if (await this.findByEmail(user.email)) {
+      throw new BadRequestException('User Already exists.');
+    }
     await user.save();
 
     delete user.password;
