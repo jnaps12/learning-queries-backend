@@ -8,6 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 import { QuestionModule } from '../question/question.module';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { CredentialModule } from '../credential/credential.module';
+import { AuthModule } from '../auth/auth.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { CredentialModule } from '../credential/credential.module';
     }),
     TypeOrmModule.forRoot(dbConfig as TypeOrmModuleOptions),
     CredentialModule,
+    AuthModule,
     QuestionGroupModule,
     QuestionModule,
   ],
