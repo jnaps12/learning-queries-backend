@@ -5,10 +5,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
 import * as bcrypt from 'bcrypt';
+import { StudentEntity } from '../../student/entities/student.entity';
 
 @Entity('credential')
 export class CredentialEntity extends BaseEntity {
@@ -23,6 +26,13 @@ export class CredentialEntity extends BaseEntity {
 
   @Column({ type: 'boolean', default: 0 })
   status: boolean;
+
+  @Column({ name: 'student_id' })
+  studentId: number;
+
+  @OneToOne(() => StudentEntity)
+  @JoinColumn({ name: 'student_id' })
+  student: StudentEntity;
 
   @CreateDateColumn({
     type: 'timestamp',
