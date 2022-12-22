@@ -10,6 +10,7 @@ import {
 import { QuestionGroupService } from './question-group.service';
 import { CreateQuestionGroupDto } from './dto/create-question-group.dto';
 import { UpdateQuestionGroupDto } from './dto/update-question-group.dto';
+import { Levels } from "../question/entities/question.entity";
 
 @Controller('question-group')
 export class QuestionGroupController {
@@ -28,6 +29,11 @@ export class QuestionGroupController {
   @Get(':id')
   async findOne(@Param('id') id: string) {
     return await this.questionGroupService.findOne(+id);
+  }
+
+  @Get('/difficulty/:difficulty')
+  async findQuestionByDifficulty(@Param('difficulty') difficulty: Levels) {
+    return await this.questionGroupService.findQuestionByDifficulty(difficulty);
   }
 
   @Patch(':id')

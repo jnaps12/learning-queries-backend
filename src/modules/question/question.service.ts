@@ -44,6 +44,20 @@ export class QuestionService {
     return question;
   }
 
+  async findOneByGroupId(groupId: number) {
+    const question = await this.questionRepository.findOne({
+      where: {
+        questionGroupId: groupId,
+      },
+    });
+
+    if (!question) {
+      throw new NotFoundException(question, 'QuestionGroup not found.');
+    }
+
+    return question;
+  }
+
   async update(id: number, updateQuestionDto: UpdateQuestionDto) {
     const question = await this.questionRepository.update(
       { id },

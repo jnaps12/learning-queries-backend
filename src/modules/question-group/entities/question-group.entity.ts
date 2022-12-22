@@ -5,7 +5,10 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Column, CreateDateColumn } from 'typeorm';
-import { QuestionEntity } from '../../question/entities/question.entity';
+import {
+  Levels,
+  QuestionEntity,
+} from '../../question/entities/question.entity';
 
 @Entity('question_group')
 export class QuestionGroupEntity {
@@ -17,6 +20,12 @@ export class QuestionGroupEntity {
 
   @Column({ name: 'icon_url', type: 'text' })
   iconUrl: string;
+
+  @Column({ name: 'done', type: 'boolean' })
+  done: boolean;
+
+  @Column({ name: 'difficulty', type: 'enum', enum: Levels })
+  difficulty: Levels;
 
   @OneToMany(() => QuestionEntity, (question) => question.questionGroup, {
     cascade: true,

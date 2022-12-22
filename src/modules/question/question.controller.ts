@@ -33,6 +33,11 @@ export class QuestionController {
     return await this.questionService.findOne(+id);
   }
 
+  @Get('/groupid/:groupId')
+  async findOneByGroupId(@Param('groupId') groupId: string){
+    return await this.questionService.findOneByGroupId(+groupId);
+  }
+
   @Patch(':id')
   async update(
     @Param('id') id: string,

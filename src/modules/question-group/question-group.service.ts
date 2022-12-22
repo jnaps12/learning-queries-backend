@@ -4,6 +4,7 @@ import { UpdateQuestionGroupDto } from './dto/update-question-group.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { QuestionGroupEntity } from './entities/question-group.entity';
 import { Repository } from 'typeorm';
+import { Levels } from '../question/entities/question.entity';
 
 @Injectable()
 export class QuestionGroupService {
@@ -26,6 +27,14 @@ export class QuestionGroupService {
 
   async findAll() {
     return await this.questionGroupRepository.find();
+  }
+
+  async findQuestionByDifficulty(difficulty: Levels) {
+    return await this.questionGroupRepository.find({
+      where: {
+        difficulty: difficulty,
+      },
+    });
   }
 
   async findOne(id: number) {
