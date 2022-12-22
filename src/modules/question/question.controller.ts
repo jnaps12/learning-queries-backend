@@ -10,6 +10,7 @@ import {
 import { QuestionService } from './question.service';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
+import { IsPublic } from "../../decorators/is-public";
 
 @Controller('question')
 export class QuestionController {
@@ -20,6 +21,8 @@ export class QuestionController {
     return await this.questionService.create(createQuestionDto);
   }
 
+
+  @IsPublic()
   @Get()
   async findAll() {
     return await this.questionService.findAll();
