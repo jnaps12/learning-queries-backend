@@ -34,6 +34,9 @@ export class QuestionEntity {
   @Column({ name: 'question_group_id' })
   questionGroupId: number;
 
+  @Column({ name: 'done' })
+  done: boolean;
+
   @ManyToOne(
     () => QuestionGroupEntity,
     (questionGroup) => questionGroup.question,
